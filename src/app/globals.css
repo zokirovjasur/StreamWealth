@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: 255, 255, 255;
+  --foreground: 0, 0, 0;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --background: 17, 24, 39;
+  --foreground: 255, 255, 255;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
+
+.light-theme-card {
+  @apply bg-white text-gray-800;
+}
+
+[data-theme='dark'] .light-theme-card {
+  @apply bg-gray-800 text-white;
+}
+
+[data-theme='dark'] input,
+[data-theme='dark'] select,
+[data-theme='dark'] textarea {
+  @apply bg-gray-700 border-gray-600 text-white;
+}
+
+[data-theme='dark'] button.bg-white {
+  @apply bg-gray-700 text-white;
+}
+
+[data-theme='dark'] button.bg-secondary:hover {
+  @apply bg-blue-600;
+}
