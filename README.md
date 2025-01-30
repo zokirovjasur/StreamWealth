@@ -8,12 +8,7 @@ Xususiyatlar
 💰 Daromad va xarajatlarni batafsil tasniflash bilan kuzatish
 📊 Interaktiv diagrammalar yordamida ma'lumotlarni vizual tarzda ko'rsatish
 🌓 Yorug'lik/Qorong'u rejimlarini qo'llab-quvvatlash
-💱 Bir nechta valyuta qo'llab-quvvatlash
-📱 Har xil qurilmalarda moslashuvchan dizayn
-🔍 Kengaytirilgan filtr va qidiruv imkoniyatlari
-📤 Ma'lumotlarni eksport qilish
-📂 Kategoriya boshqaruvi
-💾 Mahalliy saqlash (localStorage) orqali doimiy saqlash
+
 
 <br><br>
 ![Dashboard](./project-img/1.png)

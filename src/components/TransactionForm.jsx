@@ -1,49 +1,56 @@
-'use client';
-import React, { useState, useCallback } from 'react';
-import { useTransactions } from '../store/TransactionContext';
+"use client";
+import React, { useState, useCallback } from "react";
+import { useTransactions } from "../store/TransactionContext";
 
 export default function TransactionForm({ transaction, onClose }) {
   const { state, addTransaction, updateTransaction } = useTransactions();
-  const [formData, setFormData] = useState(transaction || {
-    type: 'expense',
-    amount: '',
-    description: '',
-    category: state.categories[0],
-    date: new Date().toISOString().split('T')[0]
-  });
-
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    const transactionData = {
-      ...formData,
-      id: formData.id || Date.now(),
-      amount: Number(formData.amount),
-      date: new Date(formData.date).toISOString()
-    };
-
-    if (transaction) {
-      updateTransaction(transactionData);
-    } else {
-      addTransaction(transactionData);
+  const [formData, setFormData] = useState(
+    transaction || {
+      type: "expense",
+      amount: "",
+      description: "",
+      category: state.categories[0],
+      date: new Date().toISOString().split("T")[0],
     }
-    onClose();
-  }, [formData, transaction, addTransaction, updateTransaction, onClose]);
+  );
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const transactionData = {
+        ...formData,
+        id: formData.id || Date.now(),
+        amount: Number(formData.amount),
+        date: new Date(formData.date).toISOString(),
+      };
+
+      if (transaction) {
+        updateTransaction(transactionData);
+      } else {
+        addTransaction(transactionData);
+      }
+      onClose();
+    },
+    [formData, transaction, addTransaction, updateTransaction, onClose]
+  );
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }, []);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="light-theme-card rounded-lg shadow-lg p-6 w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">
-          {transaction ? 'Edit Transaction' : 'Add Transaction'}
+          {transaction ? "Edit Transaction" : "Add Transaction"}
         </h2>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Type</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Type
+            </label>
             <select
               name="type"
               value={formData.type}
@@ -56,7 +63,9 @@ export default function TransactionForm({ transaction, onClose }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Amount</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Amount
+            </label>
             <input
               type="number"
               name="amount"
@@ -68,7 +77,9 @@ export default function TransactionForm({ transaction, onClose }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Description
+            </label>
             <input
               type="text"
               name="description"
@@ -80,21 +91,27 @@ export default function TransactionForm({ transaction, onClose }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Category
+            </label>
             <select
               name="category"
               value={formData.category}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
             >
-              {state.categories.map(category => (
-                <option key={category} value={category}>{category}</option>
+              {state.categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
               ))}
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Date</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Date
+            </label>
             <input
               type="date"
               name="date"
@@ -110,7 +127,7 @@ export default function TransactionForm({ transaction, onClose }) {
               type="submit"
               className="flex-1 bg-secondary hover:bg-blue-600 text-white py-2 rounded"
             >
-              {transaction ? 'Update' : 'Add'}
+              {transaction ? "Update" : "Add"}
             </button>
             <button
               type="button"
